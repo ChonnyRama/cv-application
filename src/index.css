@@ -24,15 +24,11 @@ a:hover {
 
 body {
   margin: 0;
+  padding: 0;
   display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
 }
 
 button {
@@ -65,4 +61,38 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+header {
+  margin-bottom: 20px;
+  font-size: 2.5rem;
+  font-weight: 1000;
+  background-color: #7bb5e8;
+}
+.content {
+  display: flex;
+  justify-content: space-between;
+  gap: 100px;
+  min-width: 800px;
+}
+
+.cv-form {
+
+}
+
+.preview {
+  flex: 2;
+}
+
+
+.basic-info {
+  display: flex;
+  flex-direction: column; /* Keeps each label/input pair in a vertical stack */
+  gap: 15px; /* Adds space between each label/input pair */
 }
