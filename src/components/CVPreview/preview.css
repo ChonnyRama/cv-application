@@ -1,3 +1,8 @@
+.preview-section {
+  display: flex;
+  flex-direction: column;
+}
+
 .preview-basic {
     display: flex;
     justify-content: space-between;
@@ -5,7 +10,7 @@
     align-items: center;
 }
 
-.basic-info {
+.basic-info-preview{
     text-align: left;
     display: flex;
     flex-direction: column;
@@ -26,7 +31,8 @@ h2 {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    
+    position: relative;
+    top: 10px;
 }
 
 .contact-info p {
@@ -37,4 +43,14 @@ h2 {
 
 .contact-info p :first-child {
     margin-right: 15px;
+}
+
+.preview-section > :not(:first-child) {
+  margin-top: 15px;
+  text-align: left;
+}
+
+
+.line-start {
+  font-weight: bold;
 }

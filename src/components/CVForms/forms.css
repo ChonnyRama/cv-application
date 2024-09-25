@@ -1,3 +1,15 @@
-h1 {
+h1, h2 {
     font-size: 1.5rem;
+    margin: 0;
+}
+
+.cv-form > div {
+  background-color: rgb(221, 221, 194);
+  padding: 25px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+
+  display: flex;
+  flex-direction: column; /* Keeps each label/input pair in a vertical stack */
+  gap: 15px; /* Adds space between each label/input pair */
 }

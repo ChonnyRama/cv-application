@@ -1,5 +1,7 @@
 import React from 'react'
 import PreviewBasic from './PreviewBasic'
+import PreviewSkills from './PreviewSkills'
+import './preview.css'
 
 export default function Preview({
     firstName,
@@ -8,19 +10,23 @@ export default function Preview({
     email,
     phone,
     title,
+    skills,
 }) {
-  return (
+    return (
       <>
-          <section className='preview-section'>
-              <PreviewBasic
-                  firstName={firstName}
-                  lastName={lastName}
-                  location={location}
-                  email={email}
-                  phone={phone}
-                  title={title}
-              />
+        <section className='preview-section'>
+          <PreviewBasic
+            firstName={firstName}
+            lastName={lastName}
+            location={location}
+            email={email}
+            phone={phone}
+            title={title}
+          />
+          <PreviewSkills
+            skills={skills}
+          />
         </section>
       </>
-  )
+    )
 }

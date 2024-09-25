@@ -5,7 +5,6 @@ import {
   faLocationDot,
   faEnvelope,
 } from "@fortawesome/free-solid-svg-icons";
-import './preview.css'
 
 export default function PreviewBasic({
     firstName,
@@ -18,25 +17,24 @@ export default function PreviewBasic({
     return (
     <>
         <div className='preview-basic'>
-            <div className='basic-info'>
+            <div className='basic-info-preview'>
                 <p className='full-name'>
-                    {firstName} {lastName}
+                    {firstName || "Chonny"} {lastName || "Martin"}
                     </p>
-                    <h2>{title}</h2>
+                    <h2>{title || "SWE"}</h2>
             </div>
             <div className='contact-info'> 
                 <p>
-                    <FontAwesomeIcon icon={faLocationDot} /> {location}
+                    <FontAwesomeIcon icon={faLocationDot} /> {location || "Durham"}
                 </p>
                 <p>
-                    <FontAwesomeIcon icon={faEnvelope} /> {email}
+                    <FontAwesomeIcon icon={faEnvelope} /> {email || "hitsugiya@gmail.com"}
                 </p>
                 <p>
-                    <FontAwesomeIcon icon={faPhone} /> {phone}
+                    <FontAwesomeIcon icon={faPhone} /> {phone || "919-123-4567"}
                 </p>
             </div>
         </div>
-        <hr></hr>
     </> 
     )
 }

@@ -90,9 +90,6 @@ header {
   flex: 2;
 }
 
-
-.basic-info {
-  display: flex;
-  flex-direction: column; /* Keeps each label/input pair in a vertical stack */
-  gap: 15px; /* Adds space between each label/input pair */
+.skills-buttons :first-child{
+  margin-right: 5px;
 }
