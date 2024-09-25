@@ -2,6 +2,7 @@ import { useState } from 'react'
 import BasicInfo from './components/CVForms/BasicInfo'
 import Preview from './components/CVPreview/Preview'
 import Skills from './components/CVForms/Skills'
+import Experiences from './components/CVForms/Experiences'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlus,
@@ -19,6 +20,15 @@ export default function Content() {
     {
     category: '',
     skills: '',
+    },
+  ])
+  const [experiences, setExperiences] = useState([
+    {
+      jobTitle: '',
+      company: '',
+      location: '',
+      dates: '',
+      bullets:'',
     },
   ])
 
@@ -68,6 +78,13 @@ export default function Content() {
     setCategories(newCategories)
   }
 
+  function handleExperiences(event, index, field) {
+    const newExperiences = [...experiences]
+    newExperiences[index][field] = event.target.value
+    setExperiences(newExperiences)
+
+  }
+
 
   return (
     <>
@@ -82,8 +99,8 @@ export default function Content() {
             onTitle={onTitle}
             
           />
-        <div className='skills'>
-          <h1>Skills</h1>
+          <div className='skills'>
+            <h1>Skills</h1>
             {categories.map((category, index) => (
               <Skills
                 key={index}
@@ -104,8 +121,17 @@ export default function Content() {
                 <FontAwesomeIcon icon={faPlus} />
               </button>
             </div>
-            
-        </div>
+          </div>
+          <div className='experience'>
+            <h1>Experience</h1>
+            {experiences.map((experience, index) => (
+              <Experiences
+                key={index}
+                values={experience[index]}
+                onExperiences={handleExperiences}
+              />
+            ))}
+          </div>
         </section>
         
         <section className='preview'>
