@@ -27,10 +27,12 @@ export default function Content() {
       jobTitle: '',
       company: '',
       location: '',
-      dates: '',
-      bullets:'',
+      dateFrom: '',
+      dateTo:'',
+      bullets:[''],
     },
   ])
+  const [activeExperience,setActiveExperience] = useState(null)
 
     function onFirstName(event) {
         setFirstName(event.target.value)
@@ -78,12 +80,49 @@ export default function Content() {
     setCategories(newCategories)
   }
 
+  function toggleActiveExperience(index) {
+    if (activeExperience === index) {
+      setActiveExperience(null)
+    } else {
+          setActiveExperience(index)
+    }
+  }
+
   function handleExperiences(event, index, field) {
     const newExperiences = [...experiences]
     newExperiences[index][field] = event.target.value
     setExperiences(newExperiences)
-
   }
+
+  function addExperience() {
+    setExperiences([...experiences, {
+      jobTitle: '',
+      company: '',
+      location: '',
+      dateFrom: '',
+      dateTo:'',
+      bullets:[''],
+    }])
+  }
+
+  function handleBullets(event, index, bullIndex) {
+    const newExperiences = [...experiences]
+    newExperiences[index].bullets[bullIndex] = event.target.value
+    setExperiences(newExperiences)
+  }
+
+  function addBullet(index) {
+    const newExperiences = [...experiences]
+    newExperiences[index].bullets.push('')
+    setExperiences(newExperiences)
+  }
+
+  function removeBullet(index) {
+    const newExperiences = [...experiences]
+    newExperiences[index].bullets.pop()
+    setExperiences(newExperiences)
+  }
+
 
 
   return (
@@ -122,15 +161,34 @@ export default function Content() {
               </button>
             </div>
           </div>
-          <div className='experience'>
+          <div className='experience-forms'>
             <h1>Experience</h1>
             {experiences.map((experience, index) => (
-              <Experiences
-                key={index}
-                values={experience[index]}
-                onExperiences={handleExperiences}
-              />
+              <div key={index}>
+                <button
+                  onClick={() => toggleActiveExperience(index)}
+                >
+                  {activeExperience === index ? 'Hide' : 'Show'} Experience #{index +1}
+                </button>
+                {activeExperience === index && (
+                  <div className='experience'>
+                    <Experiences
+                      values={experience}
+                      onExperiences={(event, field) => handleExperiences(event,index,field)}
+                      onBullets={(event,bullIndex) => handleBullets(event,index,bullIndex)}
+                      onAddBullet={() => addBullet(index)}
+                      onRemoveBullet={()=>removeBullet(index)}
+                    />
+                  </div>
+                )}
+                
+              </div>
             ))}
+            <button
+                onClick={addExperience}>
+              <FontAwesomeIcon icon={faPlus} />
+              <span> Experience</span>
+              </button>
           </div>
         </section>
         
@@ -143,6 +201,7 @@ export default function Content() {
             phone={phone}
             title={title}
             skills={categories}
+            experiences={experiences}
         />
         </section>
       </div>

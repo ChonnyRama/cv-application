@@ -13,3 +13,17 @@ h1, h2 {
   flex-direction: column; /* Keeps each label/input pair in a vertical stack */
   gap: 15px; /* Adds space between each label/input pair */
 }
+
+.experience {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: rgb(230, 228, 228);
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.experience button {
+  background-color: rgb(173, 250, 250);
+}

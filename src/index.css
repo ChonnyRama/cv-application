@@ -93,3 +93,7 @@ header {
 .skills-buttons :first-child{
   margin-right: 5px;
 }
+
+.exp-buttons :first-child{
+  margin-right: 5px;
+}

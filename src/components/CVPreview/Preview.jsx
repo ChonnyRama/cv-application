@@ -1,16 +1,18 @@
 import React from 'react'
 import PreviewBasic from './PreviewBasic'
 import PreviewSkills from './PreviewSkills'
+import PreviewExperiences from './PreviewExperiences'
 import './preview.css'
 
 export default function Preview({
-    firstName,
-    lastName,
-    location,
-    email,
-    phone,
-    title,
-    skills,
+  firstName,
+  lastName,
+  location,
+  email,
+  phone,
+  title,
+  skills,
+  experiences,
 }) {
     return (
       <>
@@ -25,6 +27,9 @@ export default function Preview({
           />
           <PreviewSkills
             skills={skills}
+          />
+          <PreviewExperiences
+            experiences={experiences}
           />
         </section>
       </>

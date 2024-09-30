@@ -54,3 +54,25 @@ h2 {
 .line-start {
   font-weight: bold;
 }
+
+.category {
+  font-size: .9rem;
+}
+
+.experiences-container {
+  font-size: .9rem;
+}
+
+.job-title {
+  font-weight: bold;
+}
+.experience-headline {
+  display: flex;
+  justify-content: space-between;
+}
+
+.exp-container ul {
+  position: relative;
+  right: 20px;
+  top:-10px;
+}
