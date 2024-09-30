@@ -3,6 +3,7 @@ import BasicInfo from './components/CVForms/BasicInfo'
 import Preview from './components/CVPreview/Preview'
 import Skills from './components/CVForms/Skills'
 import Experiences from './components/CVForms/Experiences'
+import Education from './components/CVForms/Education'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlus,
@@ -32,7 +33,15 @@ export default function Content() {
       bullets:[''],
     },
   ])
-  const [activeExperience,setActiveExperience] = useState(null)
+  const [activeExperience, setActiveExperience] = useState(null)
+  const [education, setEducation] = useState([
+    {
+      school: '',
+      degree: '',
+      location: '',
+      graduationDate: '',
+    },
+  ])
 
     function onFirstName(event) {
         setFirstName(event.target.value)
@@ -123,7 +132,11 @@ export default function Content() {
     setExperiences(newExperiences)
   }
 
-
+  function handleEducation(event, index, field) {
+    const newEducation = [...education]
+    newEducation[index][field] = event.target.value
+    setEducation(newEducation)
+  }
 
   return (
     <>
@@ -190,6 +203,17 @@ export default function Content() {
               <span> Experience</span>
               </button>
           </div>
+          <div className='education-form'>
+            <h1>Education</h1>
+            {education.map(((school,index) => (
+              <div className='education' key={index}>
+                <Education
+                  values={school}
+                  onEducation={(event,field)=>handleEducation(event,index,field)}
+                />
+              </div>
+            )))}
+          </div>
         </section>
         
         <section className='preview'>
@@ -202,6 +226,7 @@ export default function Content() {
             title={title}
             skills={categories}
             experiences={experiences}
+            education={education}
         />
         </section>
       </div>

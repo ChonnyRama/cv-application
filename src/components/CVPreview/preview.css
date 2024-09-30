@@ -76,3 +76,13 @@ h2 {
   right: 20px;
   top:-10px;
 }
+
+.school-preview {
+  font-size: .9rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.school-line :first-child {
+  font-weight: bold;
+}
