@@ -1,4 +1,5 @@
 import React from 'react'
+import formatDate from '../FormatDate'
 
 export default function PreviewExperiences({
   experiences,
@@ -18,7 +19,7 @@ export default function PreviewExperiences({
                 <span>{experience.location || 'Austin, TX | Remote'}</span>
               </div>
               <div className='job-dates'>
-                <span>{experience.dateFrom || 'Feb 2022'} - {experience.dateTo || 'Apr 2024'}</span>
+                <span>{formatDate(experience.dateFrom) || 'Feb 2022'} - {formatDate(experience.dateTo) || 'Apr 2024'}</span>
               </div>
             </div>
             <ul>
