@@ -14,7 +14,7 @@ h1, h2 {
   gap: 15px; /* Adds space between each label/input pair */
 }
 
-.experience {
+.experience, .projects-form-container {
   margin-top: 10px;
   display: flex;
   flex-direction: column;
@@ -22,9 +22,10 @@ h1, h2 {
   background-color: rgb(230, 228, 228);
   padding: 10px;
   border-radius: 20px;
+  max-width: 250px;
 }
 
-.experience button {
+.bullet-buttons button {
   background-color: rgb(173, 250, 250);
 }
 

@@ -75,7 +75,7 @@ export default function Experiences({
           onChange={(event) => onBullets(event,index)}
         />
       ))}
-      <div className='exp-buttons'>
+      <div className='bullet-buttons'>
         <button
           onClick={onRemoveBullet}
         >

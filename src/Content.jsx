@@ -4,6 +4,7 @@ import Preview from './components/CVPreview/Preview'
 import Skills from './components/CVForms/Skills'
 import Experiences from './components/CVForms/Experiences'
 import Education from './components/CVForms/Education'
+import Projects from './components/CVForms/Projects'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlus,
@@ -42,6 +43,14 @@ export default function Content() {
       graduationDate: '',
     },
   ])
+  const [projects, setProjects] = useState([
+    {
+    projectTitle: '',
+    projectLink: '',
+    bullets: ['']
+    }
+  ])
+  const [activeProject, setActiveProject] = useState(null)
 
     function onFirstName(event) {
         setFirstName(event.target.value)
@@ -112,6 +121,7 @@ export default function Content() {
       dateTo:'',
       bullets:[''],
     }])
+    setActiveExperience(experiences.length)
   }
 
   function handleBullets(event, index, bullIndex) {
@@ -120,16 +130,59 @@ export default function Content() {
     setExperiences(newExperiences)
   }
 
-  function addBullet(index) {
-    const newExperiences = [...experiences]
-    newExperiences[index].bullets.push('')
-    setExperiences(newExperiences)
+  function addBullet(index, type) {
+    if (type === 'experience') {
+      const newExperiences = [...experiences]
+      newExperiences[index].bullets.push('')
+      setExperiences(newExperiences)
+    } else {
+      const newProjects = [...projects]
+      newProjects[index].bullets.push('')
+      setProjects(newProjects)
+    }
+    
   }
 
-  function removeBullet(index) {
-    const newExperiences = [...experiences]
-    newExperiences[index].bullets.pop()
-    setExperiences(newExperiences)
+  function removeBullet(index, type) {
+    if (type === 'experience') {
+      const newExperiences = [...experiences]
+      newExperiences[index].bullets.pop()
+      setExperiences(newExperiences)
+    } else {
+      const newProjects = [...projects]
+      newProjects[index].bullets.pop()
+      setProjects(newProjects)
+    }
+    
+  }
+
+  function handleProjects(event, index, field) {
+    const newProjects = [...projects]
+    newProjects[index][field] = event.target.value
+    setProjects(newProjects)
+  }
+
+  function toggleActiveProjects(index) {
+    if (activeProject === index) {
+      setActiveProject(null)
+    } else {
+      setActiveProject(index)
+    }
+  }
+
+  function addProject() {
+    setProjects([...projects, {
+          projectTitle: '',
+          projectLink: '',
+          bullets: ['']
+    }])
+    setActiveProject(projects.length)
+  }
+
+  function handleProjectBullets(event, index, bullIndex) {
+    const newProjects = [...projects]
+    newProjects[index].bullets[bullIndex] = event.target.value
+    setProjects(newProjects)
   }
 
   function handleEducation(event, index, field) {
@@ -189,8 +242,8 @@ export default function Content() {
                       values={experience}
                       onExperiences={(event, field) => handleExperiences(event,index,field)}
                       onBullets={(event,bullIndex) => handleBullets(event,index,bullIndex)}
-                      onAddBullet={() => addBullet(index)}
-                      onRemoveBullet={()=>removeBullet(index)}
+                      onAddBullet={() => addBullet(index,'experience')}
+                      onRemoveBullet={()=>removeBullet(index,'experience')}
                     />
                   </div>
                 )}
@@ -202,6 +255,36 @@ export default function Content() {
               <FontAwesomeIcon icon={faPlus} />
               <span> Experience</span>
               </button>
+          </div>
+          <div className='projects-form'>
+            <h1>Projects</h1>
+            {projects.map((project, index) => (
+              <div key={index}>
+                <button
+                  onClick={() => toggleActiveProjects(index)}  
+                >
+                  {activeProject === index ? 'Hide' : 'Show'} Project #{index+1}
+                </button>
+                {activeProject === index && (
+                  <div className='project-form'>
+                    <Projects
+                      values={project}
+                      onProjects={(event, field) => handleProjects(event, index, field)}
+                      onBullets={(event,bullIndex) => handleProjectBullets(event,index,bullIndex)}
+                      onAddBullet={(index) => addBullet(index, 'project')}
+                      onRemoveBullet={(index) => removeBullet(index, 'project')}
+                    />
+                  </div>
+                  
+                )}
+              </div>
+            ))}
+            <button
+              onClick={addProject}
+            >
+              <FontAwesomeIcon icon={faPlus} />
+              <span> Project</span>
+            </button>
           </div>
           <div className='education-form'>
             <h1>Education</h1>
@@ -227,6 +310,7 @@ export default function Content() {
             skills={categories}
             experiences={experiences}
             education={education}
+            projects={projects}
         />
         </section>
       </div>
